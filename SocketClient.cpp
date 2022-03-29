@@ -34,7 +34,11 @@ int main(int argc, char const *argv[])
         cout << "Connection Failed \n";
         return -1;
     }
-    send(sock , hello , strlen(hello) , 0 );
+    string s;
+    while(1) {
+        cin >> s;
+        send(sock , s.c_str() , s.size() , 0 );
+    }
     cout << "Hello message sent\n";
     valread = read( sock , buffer, 1024);
     cout << buffer;
