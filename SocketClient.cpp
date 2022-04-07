@@ -35,11 +35,11 @@ int main(int argc, char const *argv[])
         return -1;
     }
     string s;
+    cout << "Connected \n";
     while(1) {
         cin >> s;
         send(sock , s.c_str() , s.size() , 0 );
     }
-    cout << "Hello message sent\n";
     valread = read( sock , buffer, 1024);
     cout << buffer;
     return 0;
