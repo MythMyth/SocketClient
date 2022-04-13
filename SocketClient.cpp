@@ -3,12 +3,17 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include "Debug/Debug.h"
 #define PORT 8080
    
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
+    if(argc > 1) {
+        Debug::GetInstance()->SetDebugLevel((LogLevel)atoi(argv[1]));
+    }
+
     int sock = 0, valread;
     struct sockaddr_in serv_addr;
     char *hello = "Hello from client";
@@ -37,7 +42,8 @@ int main(int argc, char const *argv[])
     string s;
     cout << "Connected \n";
     while(1) {
-        cin >> s;
+        getline(cin, s);
+        Debug::GetInstance()->Log(LOG_LEVEL_HIGH, "%s - %d", s.c_str(), s.size());
         send(sock , s.c_str() , s.size() , 0 );
     }
     valread = read( sock , buffer, 1024);

@@ -5,3 +5,7 @@ build/SocketClient: build/SocketClient.o
 
 build/SocketClient.o: SocketClient.cpp
 	$(CC) -c SocketClient.cpp -o build/SocketClient.o
+
+clean:
+	rm -rf build
+	mkdir build
